@@ -4,7 +4,19 @@
   margin: 0;
   border: 0;
 }
-body {}
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+._imagewhite {
+  filter: invert(100%);
+}
 
 #background {
   display: block;
@@ -28,14 +40,13 @@ body {}
   left: 50%;
   top: 50%;
   width: 333px;
-  height: 400px;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   box-shadow: 0px 0px 10px #000000;
   overflow: hidden;
   &__image-container {
     position: relative;
-    height: 270px;
+    height: 265px;
     overflow: hidden;
   }
   &__image-preview {
@@ -51,21 +62,90 @@ body {}
     }
   }
 
-  &__controls {}
-  &__controls-general {}
-  &__button-play {}
+  &__controls {
+    background: linear-gradient(45deg, #282828, #858585);
+    padding: 10px 30px 5px 30px;
+  }
+  &__controls-general {
+    display: flex;
+    align-items: center;
+  }
+  &__button-play-pause {
+    width: 50px;
+    height: 50px;
+    transition: 0.3s;
+    &>* {
+      display: none;
+      width: 100%;
+      height: 100%;
+      &._show {
+        display: block;
+      }
+    }
+    &:hover {
+      opacity: 0.75;
+    }
+  }
   &__image-play {}
-  &__controls-info {}
-  &__audio-title {}
-  &__audio-author {}
+  &__image-pause {}
+  &__controls-info {
+    flex: 1 0 auto;
+    margin-left: 15px;
+  }
+  &__audio-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #c1ff06;
+  }
+  &__audio-author {
+    font-size: 17px;
+  }
   &__controls-changeover {}
-  &__button-prev {}
-  &__image-prev {}
-  &__button-next {}
-  &__image-next {}
-  &__progress-container {}
-  &__audio-duration {}
-  &__progress-line {}
-  &__progress-cursor {}
-  &__audio-currenttime {}
+  &__button-changeover {
+    display: block;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+  &__image-changeover {
+    width: 100%;
+    height: 100%;
+  }
+  &__progress-container {
+    width: 213px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  &__audio-duration {
+    font-size: 13px;
+    color: #c1ff06;
+    text-align: right;
+  }
+
+  &__progress-line {
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    margin: 5px 0;
+    background-color: #000000;
+    border-radius: 3px;
+    cursor: pointer;
+    &::-webkit-slider-thumb {
+      appearance: none;
+      height: 10px;
+      width: 7px;
+      border-radius: 10px;
+
+      background-color: #fff;
+    }
+  }
+  &__audio-currenttime {
+    font-size: 13px;
+  }
 }

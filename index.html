@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <title>Music player</title>
 </head>
@@ -18,31 +21,31 @@
     </div>
     <div class="player__controls">
       <div class="player__controls-general">
-        <button class="player__button-play">
-          <img src="./assets/svg/play.png" alt="" class="player__image-play">
+        <button class="player__button-play-pause">
+          <img src="./assets/svg/play.png" alt="" class="player__image-play _imagewhite _show">
+          <img src="./assets/svg/pause.png" alt="" class="player__image-pause _imagewhite">
         </button>
         <div class="player__controls-info">
           <div class="player__audio-title">Dua Lipa</div>
           <div class="player__audio-author">Don't Start Now</div>
         </div>
         <div class="player__controls-changeover">
-          <div class="player__button-prev">
-            <img src="./assets/svg/backward.png" alt="" class="player__image-prev">
-          </div>
-          <div class="player__button-next">
-            <img src="./assets/svg/forward.png" alt="" class="player__image-next">
-          </div>
+          <button class="player__button-changeover">
+            <img src="./assets/svg/backward.png" alt="" class="player__image-changeover _imagewhite">
+          </button>
+          <button class="player__button-changeover">
+            <img src="./assets/svg/forward.png" alt="" class="player__image-changeover _imagewhite">
+          </button>
         </div>
       </div>
       <div class="player__progress-container">
         <div class="player__audio-duration">3:23</div>
-        <div class="player__progress-line">
-          <div class="player__progress-cursor"></div>
-        </div>
+        <input type="range" class="player__progress-line" min="0" value="0" max="100">
         <div class="player__audio-currenttime">2:29</div>
       </div>
     </div>
   </div>
+  <script src="./js/app.js"></script>
 </body>
 
 </html>
