@@ -4,15 +4,68 @@
   margin: 0;
   border: 0;
 }
-html,
-body {
-  height: 100%;
-}
+body {}
 
-.wrapper {
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: blur(10px);
+
+}
+.background__container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 5px 40px #000000;
+}
+.player {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 333px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000000;
   overflow: hidden;
+  &__image-container {
+    position: relative;
+    height: 270px;
+    overflow: hidden;
+  }
+  &__image-preview {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 343px;
+    height: 343px;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0.75s;
+    &._isplay {
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+  }
+
+  &__controls {}
+  &__controls-general {}
+  &__button-play {}
+  &__image-play {}
+  &__controls-info {}
+  &__audio-title {}
+  &__audio-author {}
+  &__controls-changeover {}
+  &__button-prev {}
+  &__image-prev {}
+  &__button-next {}
+  &__image-next {}
+  &__progress-container {}
+  &__audio-duration {}
+  &__progress-line {}
+  &__progress-cursor {}
+  &__audio-currenttime {}
 }
