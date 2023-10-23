@@ -72,21 +72,21 @@ button {
   display: flex;
   align-items: center;
 }
-.player__button-play-pause {
+.player__button-playpause {
+  display: none;
   width: 50px;
   height: 50px;
   transition: 0.3s;
 }
-.player__button-play-pause > * {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
-.player__button-play-pause > *._show {
+.player__button-playpause._show {
   display: block;
 }
-.player__button-play-pause:hover {
+.player__button-playpause:hover {
   opacity: 0.75;
+}
+.player__image-playpause {
+  width: 100%;
+  height: 100%;
 }
 .player__controls-info {
   flex: 1 0 auto;
