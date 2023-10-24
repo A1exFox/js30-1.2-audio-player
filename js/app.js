@@ -1,22 +1,41 @@
-const player = audioPlayer('./assets/audio.json');
-player.callback.image = updateImage;
+(() => {
+  const player = audioPlayer('./assets/audio.json');
+  // player.callback.image = updateImage;
 
-let background = document.getElementById('background');
-let preview = document.getElementById('preview');
+  function updateImage(image) {
+    try {
+      const ids = ['bgimages'];
+      ids.forEach(id => changeImg(id, image.cloneNode(true)));
+    }
+    catch (error) {
+      console.log(error);
+    }
 
-function updateImage() {
-  try {
-    const image = player.track.image.cloneNode(true);
-    if (!background) throw new Error('#background not found');
-    image.id = background.id;
-    background.replaceWith(image);
-
-    // background.replaceWith(image);
-    console.log(background);
-    console.dir(background);
+    function changeImg(id, target) {
+      const container = document.getElementById(id);
+      if (!container) throw new Error(`id: #${id} not found`);
+      const current = container.querySelector('img');
+      target.alt = current.alt;
+      target.classList.value = current.classList.value;
+      target.classList.remove('_show');
+      container.insertAdjacentElement('beforeend', target);
+      target.classList.add('_show');
+      current.classList.add('_hide');
+      current.addEventListener('animationend', removeOldImg, { once: true });
+      target.addEventListener('animationend', removeClassShow, { once: true });
+    }
+    function removeOldImg(event) {
+      event.target.remove();
+    }
+    function removeClassShow(event) {
+      event.target.classList.remove('_show');
+    }
   }
-  catch (error) {
-    console.log(error);
-  }
+})();
 
-}
+
+// const element = document.getElementById('background');
+// element.addEventListener('animationend', (event) => {
+//   console.log(event.target);
+//   event.target.remove();
+// }, { once: true });

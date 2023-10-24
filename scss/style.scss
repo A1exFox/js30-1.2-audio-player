@@ -25,15 +25,57 @@ button {
   filter: blur(10px);
 
 }
-.background__container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0 5px 40px #000000;
+.background {
+  &__container {
+    &>* {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__images {
+    filter: blur(10px);
+    &>* {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__image {
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    &._hide {
+      animation-name: fadeout;
+    }
+    &._show {
+      animation-name: fadein;
+    }
+
+  }
+  &__shadow {
+    box-shadow: inset 0 0 20px 10px #000000;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .player {
   position: absolute;
@@ -70,23 +112,6 @@ button {
     display: flex;
     align-items: center;
   }
-  // &__button-play-pause {
-  //   width: 50px;
-  //   height: 50px;
-  //   transition: 0.3s;
-  //   &>* {
-  //     display: none;
-  //     width: 100%;
-  //     height: 100%;
-  //     &._show {
-  //       display: block;
-  //     }
-  //   }
-  //   &:hover {
-  //     opacity: 0.75;
-  //   }
-  // }
-
   &__button-playpause {
     display: none;
     width: 50px;

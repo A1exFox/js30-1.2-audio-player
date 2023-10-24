@@ -100,9 +100,9 @@ function audioPlayer(url) {
   };
   create();
   function updateImage(image) {
-    player.track.image = image;
+    // player.track.image = image;
     const callback = player.callback.image;
-    if (callback) callback();
+    if (callback) callback(image);
   }
   function updateAudio(audio) {
     player.track.audio = audio;
