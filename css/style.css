@@ -8,6 +8,7 @@
 body {
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
+  background-color: #696969;
 }
 
 button {
@@ -44,7 +45,7 @@ button {
   height: 100%;
 }
 .background__image {
-  animation-duration: 1s;
+  animation-duration: 0.75s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -97,9 +98,18 @@ button {
   height: 343px;
   transform: translate(-50%, -50%) scale(1);
   transition: 0.75s;
+  animation-duration: 0.75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .player__image-preview._isplay {
   transform: translate(-50%, -50%) scale(1.15);
+}
+.player__image-preview._hide {
+  animation-name: fadeout;
+}
+.player__image-preview._show {
+  animation-name: fadein;
 }
 .player__controls {
   background: linear-gradient(45deg, #282828, #858585);
@@ -148,6 +158,9 @@ button {
 }
 .player__button-changeover:hover {
   opacity: 0.75;
+}
+.player__button-changeover:disabled {
+  opacity: 0.3;
 }
 .player__image-changeover {
   width: 100%;

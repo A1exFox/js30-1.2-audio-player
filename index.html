@@ -14,13 +14,13 @@
 <body>
   <div class="background__container">
     <div class="background__images" id="bgimages">
-      <img class="background__image" src="./assets/img/lemonade.png" alt="background">
+      <img src="" alt="background" class="background__image">
     </div>
     <div class="background__shadow"></div>
   </div>
   <div class="player">
-    <div class="player__image-container">
-      <img src="" alt="preview" class="player__image-preview" id="preview">
+    <div class="player__image-container" id="previewcontainer">
+      <img src="" alt="preview" class="player__image-preview">
     </div>
     <div class="player__controls">
       <div class="player__controls-general">
@@ -35,10 +35,10 @@
           <div class="player__audio-author">Don't Start Now</div>
         </div>
         <div class="player__controls-changeover">
-          <button class="player__button-changeover">
+          <button class="player__button-changeover" id="previous">
             <img src="./assets/svg/backward.png" alt="" class="player__image-changeover _imagewhite">
           </button>
-          <button class="player__button-changeover">
+          <button class="player__button-changeover" id="next">
             <img src="./assets/svg/forward.png" alt="" class="player__image-changeover _imagewhite">
           </button>
         </div>

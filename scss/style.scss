@@ -7,6 +7,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: #ffffff;
+  background-color: #696969;
 }
 
 button {
@@ -46,7 +47,7 @@ button {
     }
   }
   &__image {
-    animation-duration: 1s;
+    animation-duration: 0.75s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     &._hide {
@@ -102,6 +103,16 @@ button {
     &._isplay {
       transform: translate(-50%, -50%) scale(1.15);
     }
+
+    animation-duration: 0.75s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    &._hide {
+      animation-name: fadeout;
+    }
+    &._show {
+      animation-name: fadein;
+    }
   }
 
   &__controls {
@@ -153,6 +164,9 @@ button {
     }
     &:hover {
       opacity: 0.75;
+    }
+    &:disabled {
+      opacity: 0.3;
     }
   }
   &__image-changeover {
