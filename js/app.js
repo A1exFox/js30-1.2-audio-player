@@ -9,15 +9,19 @@
     const controls = getControls();
     const state = {
       complete: {
-        changeover: false,
+        image: false,
+        audio: false,
       },
       image: {
-        loadImage: false,
-        loadAnimate: false,
+        load: false,
+        animate: false,
       },
+      audio: {
+        load: false,
+      }
     }
     function updateAudio(audio) {
-
+      state.audio.load = false;
     }
     function getControls() {
       const ids = ['next', 'previous'];
@@ -37,45 +41,56 @@
         element.onclick = click[id];
       }
       function next() {
-        if (!state.complete.changeover) return;
+        if (!state.complete.image) return;
         player.next();
       }
       function previous() {
-        if (!state.complete.changeover) return;
+        if (!state.complete.image) return;
         player.previous();
       }
       return controls;
     }
     function updatePostload() {
-      if (state.image.loadImage) {
-        state.image.loadImage = false;
-        stateUpdate();
+      if (state.image.load) {
+        state.image.load = false;
+        updateState();
+      }
+      if (state.audio.load) {
+        state.audio.load = false;
+        updateState();
       }
     }
     function updatePreload() {
-      state.image.loadImage = true;
-      state.complete.changeover = false;
-      changeoverDisable();
+      state.image.load = true;
+      state.audio.load = true;
+      state.complete.image = false;
+      state.complete.audio = false;
+      updateState();
+      // changeoverDisable();
     }
-    function stateUpdate() {
-      const isloadImg = !state.image.loadImage;
-      const isloadAnimate = !state.image.loadAnimate;
-      const isImageComplete = isloadImg && isloadAnimate;
-      const complete = isImageComplete;
-      state.complete.changeover = complete;
-      if (complete) changeoverEnable();
-    }
-    function changeoverDisable() {
-      controls.next.disabled = true;
-      controls.previous.disabled = true;
-    }
-    function changeoverEnable() {
-      controls.next.disabled = false;
-      controls.previous.disabled = false;
+    function updateState() {
+      const image = isImageComplete();
+      state.complete.image = image;
+      if (image) changeoverEnable();
+      else changeoverDisable();
+
+      function isImageComplete() {
+        const isloadImg = !state.image.load;
+        const isloadAnimate = !state.image.animate;
+        return isloadImg && isloadAnimate;
+      }
+      function changeoverDisable() {
+        controls.next.disabled = true;
+        controls.previous.disabled = true;
+      }
+      function changeoverEnable() {
+        controls.next.disabled = false;
+        controls.previous.disabled = false;
+      }
     }
     function updateImage(image) {
-      state.image.loadImage = false;
-      state.image.loadAnimate = true;
+      state.image.load = false;
+      state.image.animate = true;
       const ids = ['bgimages', 'previewcontainer'];
       ids.forEach(id => changeImg(id, image.cloneNode(true)));
 
@@ -103,9 +118,9 @@
         removeStateAnimate();
       }
       function removeStateAnimate() {
-        if (state.image.loadAnimate) {
-          state.image.loadAnimate = false;
-          stateUpdate();
+        if (state.image.animate) {
+          state.image.animate = false;
+          updateState();
         }
       }
     }
