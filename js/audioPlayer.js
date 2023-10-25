@@ -4,6 +4,8 @@ function audioPlayer(option) {
     pause,
     next,
     previous,
+    getTime,
+    setTime,
   };
   let index;
   const audio = new Audio();
@@ -25,13 +27,22 @@ function audioPlayer(option) {
     audio.oncanplay = () => setTimeout(() => audioload(), 1000);
   }
   function audioload() {
-    option.callback.audioload();
+    audio.onended = next;
+    audio.ontimeupdate = option.callback.timeupdate;
+    const duration = audio.duration;
+    option.callback.audioload(duration);
   }
   function imgload() {
-    option.callback.imgload();
+    option.callback.imgload(image);
   }
   function preload(info) {
     option.callback.preload(info);
+  }
+  function setTime(seconds) {
+    audio.currentTime = seconds;
+  }
+  function getTime() {
+    return audio.currentTime;
   }
   function next() {
     const expectIndex = index + 1;

@@ -205,6 +205,10 @@ button {
 
       background-color: #fff;
     }
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
   }
   &__audio-currenttime {
     font-size: 13px;

@@ -200,6 +200,10 @@ button {
   border-radius: 10px;
   background-color: #fff;
 }
+.player__progress-line:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 .player__audio-currenttime {
   font-size: 13px;
 }
