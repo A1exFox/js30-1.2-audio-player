@@ -1,100 +1,55 @@
-function audioPlayer(url) {
-  let loadedData;
-  let currentIndex;
+function audioPlayer(option) {
   const player = {
-    track: {
-      // index: null,
-      // title: null,
-      // author: null,
-      image: null,
-      audio: null,
-    },
-    callback: {
-      image: null,
-      audio: null,
-      preload: null,
-      postload: null,
-    },
+    play,
+    pause,
     next,
     previous,
   };
-  create();
-  function previous() {
-    const expectIndex = currentIndex - 1;
-    const maxIndex = loadedData.length - 1;
-    const minIndex = 0;
-    const index = expectIndex < minIndex ? maxIndex : expectIndex;
-    init(index);
+  let index;
+  const audio = new Audio();
+  const image = new Image();
+  let source;
+
+  (async function create(url) {
+    const response = await fetch(url);
+    source = await response.json();
+    init(0);
+  })(option.url);
+
+  function init(newIndex) {
+    index = newIndex;
+    preload(source[index].info);
+    image.src = source[index].src.image;
+    audio.src = source[index].src.audio;
+    image.onload = () => setTimeout(() => imgload(), 1000);
+    audio.oncanplay = () => setTimeout(() => audioload(), 1000);
+  }
+  function audioload() {
+    option.callback.audioload();
+  }
+  function imgload() {
+    option.callback.imgload();
+  }
+  function preload(info) {
+    option.callback.preload(info);
   }
   function next() {
-    const expectIndex = currentIndex + 1;
-    const maxIndex = loadedData.length - 1;
-    const minIndex = 0;
-    const index = expectIndex > maxIndex ? minIndex : expectIndex;
-    init(index);
+    const expectIndex = index + 1;
+    const maxIndex = source.length - 1;
+    const validIndex = expectIndex > maxIndex ? 0 : expectIndex;
+    init(validIndex);
   }
-  function updateImage(image) {
-    const callback = player.callback.image;
-    if (callback) callback(image);
+  function previous() {
+    const expectIndex = index - 1;
+    const maxIndex = source.length - 1;
+    const validIndex = expectIndex < 0 ? maxIndex : expectIndex;
+    init(validIndex);
   }
-  function updateAudio(audio) {
-    player.track.audio = audio;
-    const callback = player.callback.audio;
-    if (callback) callback(audio);
+  function play() {
+    audio.play();
   }
-  function updatePreload() {
-    const callback = player.callback.preload;
-    if (callback) callback();
-  }
-  function updatePostload(index) {
-    currentIndex = index;
-    const callback = player.callback.postload;
-    if (callback) callback();
-  }
-  async function create() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      loadedData = json;
-      currentIndex = 0;
-      init(currentIndex);
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-  function init(index) {
-    const config = {
-      image: {
-        src: loadedData[index].src.image,
-        resolve: 'onload',
-        reject: 'onerror',
-        update: updateImage,
-      },
-      audio: {
-        src: loadedData[index].src.audio,
-        resolve: 'oncanplay',
-        reject: 'onerror',
-        update: updateAudio,
-      }
-    }
-    updatePreload();
-    const image = load(new Image(), config.image);
-    const audio = load(new Audio(), config.audio);
-    Promise.allSettled([image, audio])
-      .then(() => updatePostload(index));
-
-    function load(object, config) {
-      function executor(resolve, reject) {
-        object.src = config.src;
-        object[config.resolve] = () => setTimeout(() => resolve(object), 1000);
-        // object[config.resolve] = () => resolve(object);
-        object[config.reject] = () => reject(new Error(`Can not loading "${config.src}"`));
-      }
-      const result = res => config.update(res);
-      const error = err => console.log(err);
-      return new Promise(executor).then(result).catch(error);
-    }
+  function pause() {
+    audio.pause();
   }
   return player;
 }

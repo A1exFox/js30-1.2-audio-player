@@ -134,6 +134,10 @@ button {
     &:hover {
       opacity: 0.75;
     }
+    &:disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
   }
 
   &__image-playpause {
@@ -166,6 +170,7 @@ button {
       opacity: 0.75;
     }
     &:disabled {
+      cursor: default;
       opacity: 0.3;
     }
   }
