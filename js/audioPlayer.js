@@ -23,8 +23,8 @@ function audioPlayer(option) {
     preload(source[index].info);
     image.src = source[index].src.image;
     audio.src = source[index].src.audio;
-    image.onload = () => setTimeout(() => imgload(), 1000);
-    audio.oncanplay = () => setTimeout(() => audioload(), 1000);
+    image.onload = imgload;
+    audio.oncanplay = audioload;
   }
   function audioload() {
     audio.onended = next;

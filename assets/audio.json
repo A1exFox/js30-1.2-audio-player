@@ -1,22 +1,52 @@
 [
   {
     "info": {
-      "title": "Don't Start Now",
-      "author": "Dua Lipa"
+      "title": "Silent Night (Holy Night)",
+      "author": "Alexander Nakarada (CreatorChords)"
     },
     "src": {
-      "image": "./assets/img/dontstartnow.png",
-      "audio": "./assets/audio/dontstartnow.mp3"
+      "image": "./assets/img/alexander-nakarada-silent-night-holy-night.jpg",
+      "audio": "./assets/audio/alexander-nakarada-silent-night-holy-night.mp3"
     }
   },
   {
     "info": {
-      "title": "Don't Hurt Yourself",
-      "author": "Beyonce"
+      "title": "Good Times",
+      "author": "Alexander Nakarada (CreatorChords)"
     },
     "src": {
-      "image": "./assets/img/lemonade.png",
-      "audio": "./assets/audio/beyonce.mp3"
+      "image": "./assets/img/alexander-nakarada-good-times.jpg",
+      "audio": "./assets/audio/alexander-nakarada-good-times.mp3"
+    }
+  },
+  {
+    "info": {
+      "title": "Magic Lights",
+      "author": "Keys of Moon"
+    },
+    "src": {
+      "image": "./assets/img/keys-of-moon-magic-lights.jpg",
+      "audio": "./assets/audio/keys-of-moon-magic-lights.mp3"
+    }
+  },
+  {
+    "info": {
+      "title": "Santa Claus Is Not Coming To Town",
+      "author": "Alexander Nakarada (CreatorChords)"
+    },
+    "src": {
+      "image": "./assets/img/alexander-nakarada-santa-claus-is-not-coming-to-town.jpg",
+      "audio": "./assets/audio/alexander-nakarada-santa-claus-is-not-coming-to-town.mp3"
+    }
+  },
+  {
+    "info": {
+      "title": "Jingle Bells",
+      "author": "Alexander Nakarada (CreatorChords)"
+    },
+    "src": {
+      "image": "./assets/img/alexander-nakarada-jingle-bells-metal-version.jpg",
+      "audio": "./assets/audio/alexander-nakarada-jingle-bells-metal-version.mp3"
     }
   }
 ]
